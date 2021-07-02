@@ -1,0 +1,42 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+    <h1 class="text-center display-6">Mohammad's Portfolio</h1>
+	<br />
+
+	{% load static %}
+	<div class="d-flex justify-content-center">
+		<img src="{% static 'portfolio/Image.jpg' %}" class="img-thumbnail mx-auto" width="500" /> 
+	</div>
+	
+	<div class="mx-auto w-75 d-flex justify-content-center">
+		<p class="display-4 text-center mt-4">Mohammad Rahimi is Commander-in-Chief at ZappyCode and lives in Downtown Tokyo 😊</p>
+	</div>
+	
+	<br />
+	<div class="container mt-5">
+		<p class="display-6">My Projects:</p>
+		<hr />
+		
+		<div class="row">
+			
+				{% for project in projects %}
+				<div class="col-4">
+					<div class="card card-body p-1">
+						{% if project.url %}
+							<a href="{{ project.url }}"><img src="{{ project.image.url }}" class="card-img-top" height="300" width="500" /></a>
+						{% endif %}
+						{% if project.url == '' %}
+							<img src="{{ project.image.url }}" class="card-img-top" height="300" width="500" />
+						{% endif %}
+						<h2 class="mt-2 mx-2">{{ project.title }}</h2>
+						<h4 class="mt-1 mx-2">{{	project.description }}</h4>
+						
+					</div>
+				</div>
+				{% endfor %}
+			
+		</div>
+
+	</div>
+{% endblock  %}
